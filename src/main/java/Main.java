@@ -9,6 +9,9 @@ import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
+        /**============================
+         * |     Test Array List       |
+         * ============================*/
         public static void testArrayList{
             ArrayList<Integer> list = new ArrayList<>();
             list.add(1);
@@ -23,6 +26,9 @@ public class Main {
             System.out.println("List after removing element at index 2: " + list);
             System.out.println("List after adding element 6 at index 2: " + list);
         }
+        /**========================
+         * |     Test Stack       |
+         * ========================*/
         public static void testStack{
         Stack<Integer> stack = new Stack<>();
 
@@ -46,8 +52,34 @@ public class Main {
             System.out.println(value);
             }
         }
+        /**========================
+         * |     Test Queue       |
+         * ========================*/
         public static void testQueue{
+            Queue<String> queue = new Queue<>();
+            // Add some elements to the queue
+            queue.offer("Hello");
+            queue.offer("World");
+            queue.offer("!");
+            // Check the size of the queue
+            System.out.println(queue.size()); // 3
+            // Peek at the front element of the queue
+            System.out.println(queue.peek()); // Hello
+            // Poll the front element of the queue
+            System.out.println(queue.poll()); // Hello
+            // Check the size of the queue again
+            System.out.println(queue.size()); // 2
+            // Iterate through the queue
+            for (String element : queue) {
+                System.out.println(element);
+            }
+        }
+        /**===================================
+         * |     Test SinglyLinkedList       |
+         * ===================================*/
+        public static void testSinglyLinkedList(){
 
         }
+
     }
 }
