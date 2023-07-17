@@ -1,7 +1,10 @@
 import implementations.Stack;
+import implementations.Queue;
+import implementations.SinglyLinkedList;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
 
 
 public class Main {
