@@ -1,18 +1,20 @@
-import implementations.Stack;
+/**import implementations.Stack;*/
 import implementations.Queue;
 import implementations.SinglyLinkedList;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Stack;
+/**import java.util.Queue;*/
 
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) {}
         /**============================
          * |     Test Array List       |
          * ============================*/
-        public static void testArrayList{
+        public static void testArrayList() {
             ArrayList<Integer> list = new ArrayList<>();
             list.add(1);
             list.add(2);
@@ -29,47 +31,47 @@ public class Main {
         /**========================
          * |     Test Stack       |
          * ========================*/
-        public static void testStack{
-        Stack<Integer> stack = new Stack<>();
+        public static void testStack() {
+            Stack<Integer> stack = new Stack<>();
 
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
+            stack.push(1);
+            stack.push(2);
+            stack.push(3);
 
-        System.out.println(stack.peek()); // 3
+            System.out.println(stack.peek()); // 3
 
-        int element = stack.pop();
-        System.out.println(element); // 3
+            int element = stack.pop();
+            System.out.println(element); // 3
 
-        System.out.println(stack.size()); // 2
+            System.out.println(stack.size()); // 2
 
-        boolean isEmpty = stack.isEmpty();
-        System.out.println(isEmpty); // false
+            boolean isEmpty = stack.isEmpty();
+            System.out.println(isEmpty); // false
 
-        Iterator<Integer> iterator = stack.iterator();
-        while (iterator.hasNext()) {
-            int value = iterator.next();
-            System.out.println(value);
+            Iterator<Integer> iterator = stack.iterator();
+            while (iterator.hasNext()) {
+                int value = iterator.next();
+                System.out.println(value);
             }
         }
         /**========================
          * |     Test Queue       |
          * ========================*/
-        public static void testQueue{
+        public static void testQueue() {
             Queue<String> queue = new Queue<>();
-            // Add some elements to the queue
+            /**Add elements to the queue*/
             queue.offer("Hello");
             queue.offer("World");
             queue.offer("!");
-            // Check the size of the queue
+            /**Print out size of the queue*/
             System.out.println(queue.size()); // 3
-            // Peek at the front element of the queue
+            /**Peek at the queue's front element*/
             System.out.println(queue.peek()); // Hello
-            // Poll the front element of the queue
+            /** Poll the queue's front element*/
             System.out.println(queue.poll()); // Hello
-            // Check the size of the queue again
+            /**Re-check the queue's size*/
             System.out.println(queue.size()); // 2
-            // Iterate through the queue
+            /**Iterate through the queue and print out*/
             for (String element : queue) {
                 System.out.println(element);
             }
@@ -77,9 +79,25 @@ public class Main {
         /**===================================
          * |     Test SinglyLinkedList       |
          * ===================================*/
-        public static void testSinglyLinkedList(){
-
+        public static void testSinglyLinkedList() {
+            SinglyLinkedList<String> list = new SinglyLinkedList<>();
+            /**Add elements to the linked list*/
+            list.addFirst("Hello");
+            list.addLast("World");
+            list.addLast("!");
+            /**Check the SLL's size*/
+            System.out.println(list.size()); //3
+            /**Get the SLL's first element*/
+            System.out.println(list.getFirst()); //Hello
+            /**Get the SLL's last element*/
+            System.out.println(list.getLast()); //!
+            /**Remove the SLL's first element*/
+            System.out.println(list.removeFirst()); //Hello
+            /**Re-check the SLL's size*/
+            System.out.println(list.size()); //2
+            /**Iterate through the SLL and print out*/
+            for (String element : list) {
+                System.out.println(element);
+            }
         }
-
     }
-}
