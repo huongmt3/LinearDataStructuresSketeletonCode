@@ -148,35 +148,4 @@ public class ArrayList<E> implements List<E> {
             return iterator;
         }
     }
-/**
-    @Override
-    public boolean add(E element) {
-        return false;
-    }
-    @Override
-    public boolean add(int index, E element) {
-        return false;
-    }
 
-    @Override
-    public E get(int index) {
-        return null;
-    }
-
-    @Override
-    public E set(int index, E element) {
-        return null;
-    }
-
-    @Override
-    public E remove(int index) {
-        return null;
-    }
-
-
-
-    @Override
-    public Iterator<E> iterator() {
-        return null;
-    }
-}*/
