@@ -117,4 +117,30 @@ public class SinglyLinkedList<E> implements LinkedList<E> {
             }
         };
     }
+    private void ensureNonEmpty() {
+        if (this.size == 0) {
+            throw new IllegalStateException("Stack is empty");
+        }
+    }
+    public void removeElement(E element) {
+        ensureNonEmpty();
+        if (head.element.equals(element)) {
+            head = head.next;
+            size--;
+            return;
+        }
+
+        Node<E> current = head.next;
+        Node<E> prev = head;
+        while (current != null) {
+            if (current.element.equals(element)) {
+                prev.next = current.next;
+                size--;
+                return;
+            }
+            prev = current;
+            current = current.next;
+        }
+    }
+
 }
