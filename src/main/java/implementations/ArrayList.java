@@ -101,7 +101,10 @@ public class ArrayList<E> implements List<E> {
         }
         /**shift method*/
         private void shift(int index) {
-
+                for (int i = index; i < size - 1; i++) {
+                    elements[i] = elements[i + 1];
+                }
+                elements[size - 1] = null;
         }
         /**E remove (int index)*/
         @Override
