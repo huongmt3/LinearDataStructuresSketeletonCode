@@ -38,8 +38,7 @@ public class ArrayList<E> implements List<E> {
             return null;
         } else return get(index);
     }
-    /**public static void main(String[] args) {
-        }*/
+
         /**grow method*/
         private Object[] grow() {
             int oldCapacity = elements.length;
