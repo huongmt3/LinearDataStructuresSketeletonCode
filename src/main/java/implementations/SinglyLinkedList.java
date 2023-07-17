@@ -16,8 +16,8 @@ public class SinglyLinkedList<E> implements LinkedList<E> {
             this.element = value;
         }
 
-        /**public LinkedList() {
-        }*/
+        public void LinkedList() {
+        }
     }
     @Override
     public void addFirst(E element) {
