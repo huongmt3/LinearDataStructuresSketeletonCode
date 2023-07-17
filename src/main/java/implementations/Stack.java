@@ -18,9 +18,10 @@ public class Stack<E> implements AbstractStack<E> {
     }
 
     public Stack (){
-
+        this.top = null;
+        this.size = 0;
     }
-
+/**Push element onto the stack*/
     @Override
     public void push(E element) {
         Node<E> newNode = new Node<> (element);
@@ -28,7 +29,13 @@ public class Stack<E> implements AbstractStack<E> {
         top = newNode;
         this.size++;
     }
-
+    /**Ensures that the stack is not empty*/
+    private void ensureNonEmpty() {
+        if (this.size == 0) {
+            throw new IllegalStateException("Stack is empty");
+        }
+    }
+    /**Pops element off the stack*/
     @Override
     public E pop() {
         ensureNonEmpty();
@@ -39,7 +46,7 @@ public class Stack<E> implements AbstractStack<E> {
         this.size--;
         return element;
     }
-
+/**Returns the element at the top of the stack without removing it*/
     @Override
     public E peek() {
         ensureNonEmpty();
@@ -48,18 +55,19 @@ public class Stack<E> implements AbstractStack<E> {
 
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.size == 0;
     }
 
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             private Node<E> current = top;
+
             @Override
             public boolean hasNext() {
                 return current != null;
