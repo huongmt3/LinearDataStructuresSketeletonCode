@@ -65,6 +65,8 @@ public class Main {
             /*Iterate through the stack and print out*/
             Iterator<Integer> iterator = stack.iterator();
             System.out.println("New Stack: " + stack);
+            stack.push(4);
+            System.out.println("New Stack After add 4: " + stack);
         }
         /**========================
          * |     Test Queue       |
@@ -90,6 +92,10 @@ public class Main {
             /*Iterate through the queue and print out*/
             for (String element : queue) {
                 System.out.println("New Queue: " + element);
+            }
+            queue.offer("Hello");
+            for (String element : queue) {
+                System.out.println("New Queue After Offer 'Hello': " + element);
             }
         }
         /**===================================
