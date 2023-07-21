@@ -129,7 +129,6 @@ public class SinglyLinkedList<E> implements LinkedList<E> {
             size--;
             return;
         }
-
         Node<E> current = head.next;
         Node<E> prev = head;
         while (current != null) {
