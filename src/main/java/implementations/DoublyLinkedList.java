@@ -167,10 +167,12 @@ public class DoublyLinkedList<E> implements LinkedList<E> {
     {
         if(!containNode (p)) throw new IllegalStateException("Node does not exist in link list");
         Node<E> insertNode = new Node<>(element);
+        Node<E> nextNode = p.next;
         insertNode.previous = p;
-        insertNode.next = p.next;
+        insertNode.next = nextNode;
         p.next = insertNode;
-        insertNode.next.previous = insertNode;
+        if (nextNode != null){
+        nextNode.previous = insertNode;}
     }
     public E remove (Node<E> p)
     {
@@ -194,28 +196,14 @@ public class DoublyLinkedList<E> implements LinkedList<E> {
     public static class Participant {
         private String email;
         private String displayName;
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
-
-        public void setDisplayName(String displayName) {
-            this.displayName = displayName;
-        }
-
+        public String getEmail() { return email; }
+        public void setEmail(String email) { this.email = email; }
+        public String getDisplayName() { return displayName; }
+        public void setDisplayName(String displayName) { this.displayName = displayName; }
         public Participant(String email, String displayName) {
             this.email = email;
             this.displayName = displayName;
         }
-
         @Override
         public String toString() {
             return displayName + " " + email;
