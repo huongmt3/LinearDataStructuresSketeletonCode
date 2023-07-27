@@ -5,54 +5,71 @@ import interfaces.LinkedList;
 import java.util.Iterator;
 
 public class DoublyLinkedList<E> implements LinkedList<E> {
+        private Node<E> head, tail;
+        private int size;
+        public static class Node<E> {
+            E element;
+            Node<E> next;
+            Node<E> previous;
 
-    private DoublyLinkedList.Node<E> head;
-    private DoublyLinkedList.Node<E> tail;
-    private int size;
+            public Node(E element, Node<E> next, Node<E> previous) {
+                this.previous = previous;
+                this.element = element;
+                this.next = next;
+            }
 
-    private static class Node<E> {
-        private E element;
-        private DoublyLinkedList.Node<E> next;
-        private DoublyLinkedList.Node<E> prev;
+            public Node(E element, Node<E> next) {
+                this(element, next, null);
+            }
 
-        public Node(E element) {
-            this.element = element;
+            public Node(E element) {
+                this(element, null);
+            }
         }
-    }
+
 
     public DoublyLinkedList() {
     }
 
     @Override
-    public void addFirst(E element) {
-        Node<E> newNode = new Node<>(element);
-        if (head != null) {
-            newNode.next = head;
-            head.prev = newNode;
+    public void addFirst (E element) {
+        Node<E> newNode = new Node <> (element);
+        if(head==null)
+        {
+            head= tail= newNode;
         }
-        head = newNode;
+        else
+        {
+            newNode.next = head;
+            head.previous=newNode;
+            head=newNode;
+        }
         size++;
     }
 
     @Override
-    public void addLast(E element) {
-        Node<E> newNode = new Node<>(element);
-        if (head == null) {
-            head = newNode;
+    public void addLast (E element) {
+        Node<E> newNode = new Node<> (element);
+        if(head==null)
+        {
+            head = tail = newNode;
+        }
+        else
+        {
+            tail.next = newNode;
+            newNode.previous = tail;
             tail = newNode;
-        } else {
-            /**tail.next = newNode;
-            newNode.prev = tail;
-            tail = newNode;*/
-            Node<E> current = this.head;
-            while (current.next != null){
-            head.next = current;
-                current.next = tail;
-                current.prev = tail.prev;
-                current = tail.prev.next;
-            tail.prev = current;}
         }
         size++;
+    }
+    public void printReverse()
+    {
+        Node<E> current = tail;
+        while (current !=null)
+        {
+            System.out.println(current.element);
+            current = current.previous;
+        }
     }
 
     private void ensureNonEmpty() {
@@ -60,62 +77,35 @@ public class DoublyLinkedList<E> implements LinkedList<E> {
             throw new IllegalStateException("Stack is empty");
         }
     }
-    public void reverse(E element){
-        Node<E> temp = null;
-        Node<E> current = head;
-        while (current != null) {
-            temp = current.prev;
-            current.prev = current.next;
-            current.next = temp;
-            current = current.prev;
-        }
-        if (temp != null) {
-            head = temp.prev;
-        }
-    }
-    @Override
-    public E removeFirst() {
-        /**if (head == null) {
-            return null;
-        }*/
-        ensureNonEmpty();
-        E element = head.element;
-        head = head.next;
-        if (head != null) {
-            head.prev = null;
-        }
-        size--;
-        return element;
-    }
 
     @Override
-    public E removeLast() {
-        /**if (head == null) {
-            return null;
-        }*/
+    public E removeFirst() {
         ensureNonEmpty();
-        E element = tail.element;
-        tail = tail.prev;
-        if (tail != null) {
-            tail.next = null;
-        }
+        E data = head.element;
+        head = head.next;
+        head. previous = null;
         size--;
-        return element;
+        return data;
+    }
+    @Override
+    public E removeLast() {
+        ensureNonEmpty();
+        E data = tail.element;
+        tail.previous.next = null;
+        tail = tail.previous;
+        size--;
+        return data;
     }
 
     @Override
     public E getFirst() {
-        if (head == null) {
-            return null;
-        }
+        ensureNonEmpty();
         return head.element;
     }
 
     @Override
     public E getLast() {
-        if (head == null) {
-            return null;
-        }
+        ensureNonEmpty();
         return tail.element;
     }
 
@@ -132,7 +122,7 @@ public class DoublyLinkedList<E> implements LinkedList<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private DoublyLinkedList.Node<E> current = head;
+            Node<E> current = head;
 
             @Override
             public boolean hasNext() {
@@ -141,10 +131,94 @@ public class DoublyLinkedList<E> implements LinkedList<E> {
 
             @Override
             public E next() {
-                E element = current.element;
+                E data = current.element;
                 current = current.next;
-                return element;
+                return data;
             }
         };
+    }
+    public boolean containNode (Node<E> node)
+    {
+        Node<E> current = head;
+        while (current!=null)
+        {
+            if (current==node)
+            {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+    public Node<E> contains (E element)
+    {
+        Node<E> current = head;
+        while (current !=null)
+        {
+            if (current.element.equals(element))
+            {
+                return current;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+    public void insertAfter (Node<E> p, E element)
+    {
+        if(!containNode (p)) throw new IllegalStateException("Node does not exist in link list");
+        Node<E> insertNode = new Node<>(element);
+        insertNode.previous = p;
+        insertNode.next = p.next;
+        p.next = insertNode;
+        insertNode.next.previous = insertNode;
+    }
+    public E remove (Node<E> p)
+    {
+        if(!containNode (p)) throw new IllegalStateException("Node does not exist in link list");
+        E data = p.element;
+        if (head==p)
+        {
+            removeFirst();
+        }
+        else if (tail==p)
+        {
+            removeLast();
+        }
+        else
+        {
+            p.previous.next = p.next; p.next.previous = p.previous;
+            size--;
+        }
+        return data;
+    }
+    public static class Participant {
+        private String email;
+        private String displayName;
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+
+        public void setDisplayName(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public Participant(String email, String displayName) {
+            this.email = email;
+            this.displayName = displayName;
+        }
+
+        @Override
+        public String toString() {
+            return displayName + " " + email;
+        }
     }
 }

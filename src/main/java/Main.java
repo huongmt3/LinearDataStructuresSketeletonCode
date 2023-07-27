@@ -12,24 +12,33 @@ import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
-        DoublyLinkedList<String> list = new DoublyLinkedList<>();
-        list.addFirst("Hello");
+        testDoublyinkedList();
+    }
+    public static void welcome() {
+        System.out.println("Hello everyone!");
+        introduce();
+    }
+    public static void introduce() {
+        System.out.println("My full name is Ma Thu Huong");
+        System.out.println("You can call me Huong");
+    }
+        /**DoublyLinkedList<String> list = new DoublyLinkedList<>();
+        list.addLast("Hello");
         list.addLast("this is");
         list.addLast("normal");
         list.addLast("list");
 
         for (String element : list) {
             System.out.println("Original DLL: " + element);
-        }
-        // Function call
-        /*list.reverse();*/
+        }*/
+        /** Function call
+        list.reverse();
 
         System.out.println("");
-        System.out.println("The reversed Linked List is ");
         for (String element : list) {
-            System.out.println("Original DLL: " + element);
-        }
-    }
+        System.out.println("The reversed Linked List is " + element);
+        }*/
+
 
     /**
      * ============================
@@ -162,22 +171,51 @@ public class Main {
      * ===================================
      */
     public static void testDoublyinkedList() {
-        DoublyLinkedList<String> list = new DoublyLinkedList<>();
-        list.addFirst("Hello");
-        list.addLast("this is");
-        list.addLast("normal");
-        list.addLast("list");
+            DoublyLinkedList<DoublyLinkedList.Participant> participantList = new DoublyLinkedList<>();
+            DoublyLinkedList.Participant participant2 = new DoublyLinkedList.Participant("huong@gmail.com", "Ma Thu Huong");
+            DoublyLinkedList.Participant participant1 = new DoublyLinkedList.Participant("tra@gmail.com", "Le Thi Hong Tra");
+            DoublyLinkedList.Participant participant3 = new DoublyLinkedList.Participant("ngan@gmail.com", "Ly Thi Kim Ngan");
+            participantList.addFirst(participant1);
+            participantList.addFirst(participant2);
+            participantList.addLast(participant3);
+            Iterator<DoublyLinkedList.Participant> participantIterator = participantList.iterator();
+            System.out.println("Original List:");
+            while (participantIterator.hasNext()) {
+                System.out.println(participantIterator.next());
+            }
+            System.out.println();
+            System.out.println("First participant in the list: ");
+            System.out.println(participantList.getFirst());
+            System.out.println();
+            System.out.println("Last participant in the list: ");
+            System.out.println(participantList.getLast());
 
-        for (String element : list) {
-            System.out.println("Original DLL: " + element);
-        }
-        // Function call
-        /*list.reverse();*/
+            /**DoublyLinkedList.Node<DoublyLinkedList.Participant> participantToRemove = participantList.contains(participant1);*/
+            if (participantList.contains(participant3) == null)
+                System.out.println("This participant cannot be remove because does not exist in the list.");
+            else{
+                System.out.println();
+                System.out.println("Participant " +participant3+ " exists in the list.");
+                participantList.remove(participantList.contains(participant3));
+                System.out.println();
+                System.out.println("Removed successfully.");
+            }
+            System.out.println();
+            System.out.println("List after removing the participant:");
+            /**Iterator<DoublyLinkedList.Participant> participantIterator = participantList.iterator();*/
+            participantIterator = participantList.iterator();
+            while (participantIterator.hasNext()) {
+                System.out.println(participantIterator.next());
+            }
 
-        System.out.println("");
-        System.out.println("The reversed Linked List is ");
-        for (String element : list) {
-            System.out.println("Original DLL: " + element);
+            DoublyLinkedList.Participant participant4 = new DoublyLinkedList.Participant("nhan@gmail.com", "Ly Thi Thanh Nhan");
+            participantList.insertAfter(participantList.contains(participant2), participant4);
+            System.out.println();
+            System.out.println("List after adding the participant:");
+            /**Iterator<DoublyLinkedList.Participant> participantIterator = participantList.iterator();*/
+            participantIterator = participantList.iterator();
+            while (participantIterator.hasNext()) {
+                System.out.println(participantIterator.next());
+            }
         }
-    }
 }
