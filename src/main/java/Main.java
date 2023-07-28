@@ -46,7 +46,7 @@ public class Main {
         studentList.add( new Student(3, "Thu Hoai", 22, 8.3));
         studentList.add( new Student(4, "Thanh Nhan", 18, 8.2));
         /*Print out list*/
-        System.out.println("Original List: ");
+        System.out.println("Initial List: ");
         System.out.println(studentList);
         /**Get capacity*/
          System.out.println("Capacity " + studentList.getCapacity());
