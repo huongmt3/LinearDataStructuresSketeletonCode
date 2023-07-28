@@ -31,16 +31,6 @@ public class Main {
 
     public static void testArrayList() {
         ArrayList<Student> studentList = new ArrayList<>();
-        /**Initialize Student objects
-        Student student1 = new Student(1, "Thu Huong", 20, 8.5);
-        Student student2 = new Student(2, "Hong Tra", 20, 9.7);
-        Student student3 = new Student(3, "Thu Hoai", 22, 8.3);
-        Student student4 = new Student(4, "Thanh Nhan", 18, 8.2);
-        /*Add elements to the list
-        studentList.add(student1);
-        studentList.add(student2);
-        studentList.add(student3);
-        studentList.add(student4);*/
         studentList.add( new Student(1, "Thu Huong", 20, 8.5));
         studentList.add( new Student(2, "Hong Tra", 20, 9.7));
         studentList.add( new Student(3, "Thu Hoai", 22, 8.3));
