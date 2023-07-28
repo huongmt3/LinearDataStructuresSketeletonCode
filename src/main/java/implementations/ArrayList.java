@@ -138,7 +138,9 @@ public class ArrayList<E> implements List<E> {
             private String name;
             private int age;
             private double grade;
-            public Student(int id, String name, int age, double grade) { }
+            public Student(int id, String name, int age, double grade) {
+                toString();
+            }
             public int getId() {return id;}
             public void setId(int id) { this.id = id;}
             public String getName() {return name;}
