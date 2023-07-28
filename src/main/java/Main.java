@@ -2,17 +2,17 @@
 import implementations.DoublyLinkedList;
 import implementations.Queue;
 import implementations.SinglyLinkedList;
+import implementations.ArrayList.Student;
+import implementations.ArrayList;
 
-import java.util.ArrayList;
+/*import java.util.ArrayList;*/
 import java.util.Iterator;
 import java.util.Stack;
 /**import java.util.Queue;*/
 
-
-
 public class Main {
     public static void main(String[] args) {
-        testDoublyLinkedList();
+        testArrayList();
     }
     public static void welcome() {
         System.out.println("Hello everyone!");
@@ -22,53 +22,57 @@ public class Main {
         System.out.println("My full name is Ma Thu Huong");
         System.out.println("You can call me Huong");
     }
-    /**DoublyLinkedList<String> list = new DoublyLinkedList<>();
-     list.addLast("Hello");
-     list.addLast("this is");
-     list.addLast("normal");
-     list.addLast("list");
-
-     for (String element : list) {
-     System.out.println("Original DLL: " + element);
-     }*/
-    /** Function call
-     list.reverse();
-
-     System.out.println("");
-     for (String element : list) {
-     System.out.println("The reversed Linked List is " + element);
-     }*/
-
 
     /**
      * ============================
      * |     Test Array List       |
      * ============================
      */
-    public static void testArrayList() {
-        ArrayList<Integer> list = new ArrayList<>();
-        /*Add elements to the list*/
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        /*Print out list*/
-        System.out.println("Original List: " + list);
-        /*Print out list's size*/
-        System.out.println("Size of List: " + list.size());
-        /*Get element at index 2*/
-        System.out.println("Element at index 2: " + list.get(2));
-        /*Remove element at index 2*/
-        System.out.println("Removing element at index 2: " + list.remove(2));
-        /*Print out list after remove element*/
-        System.out.println("List after removing element at index 2: " + list);
-        /*Add element at index 2*/
-        list.add(6, 2);
-        /*Print out list after add element*/
-        System.out.println("List after adding element 6 at index 2: " + list);
-    }
 
+    public static void testArrayList() {
+        ArrayList<Student> studentList = new ArrayList<>();
+        /**Initialize Student objects
+        Student student1 = new Student(1, "Thu Huong", 20, 8.5);
+        Student student2 = new Student(2, "Hong Tra", 20, 9.7);
+        Student student3 = new Student(3, "Thu Hoai", 22, 8.3);
+        Student student4 = new Student(4, "Thanh Nhan", 18, 8.2);
+        /*Add elements to the list
+        studentList.add(student1);
+        studentList.add(student2);
+        studentList.add(student3);
+        studentList.add(student4);*/
+        studentList.add( new Student(1, "Thu Huong", 20, 8.5));
+        studentList.add( new Student(2, "Hong Tra", 20, 9.7));
+        studentList.add( new Student(3, "Thu Hoai", 22, 8.3));
+        studentList.add( new Student(4, "Thanh Nhan", 18, 8.2));
+        /*Print out list*/
+        System.out.println("Original List: ");
+        System.out.println(studentList);
+        /**Get capacity*/
+         System.out.println("Capacity " + studentList.getCapacity());
+
+        /*Add new student*/
+        studentList.add(2, new Student(5, "Kim Ngan", 20, 7.9));
+        /*Print out new student list*/
+        System.out.println();
+        System.out.println("Student list after adding: ");
+        System.out.println(studentList);
+        /**Get capacity*/
+         System.out.println("Capacity " + studentList.getCapacity());
+
+        /*Remove student*/
+        studentList.remove(3);
+        /*Print out new student list*/
+        System.out.println();
+        System.out.println("Student list after removing: ");
+        System.out.println(studentList);
+        /**Get capacity*/
+        System.out.println("Capacity " + studentList.getCapacity());
+
+        /*Get student with index of 0*/
+        System.out.println();
+        System.out.println("Student with index of 0: ");
+        System.out.println(studentList.get(0));}
     /**
      * ========================
      * |     Test Stack       |
