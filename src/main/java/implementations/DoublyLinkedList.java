@@ -209,4 +209,22 @@ public class DoublyLinkedList<E> implements LinkedList<E> {
             return displayName + " " + email;
         }
     }
+    /**public Participant getParticipant(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node<E> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        return (Participant) current.element;
+    }
+
+    public void printParticipant(int index) {
+        Participant participant = getParticipant(index);
+        System.out.println(participant.getDisplayName() + " " + participant.getEmail());
+    }*/
+
 }

@@ -12,7 +12,9 @@ import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
+
         testArrayList();
+        testDoublyLinkedList();
     }
     public static void welcome() {
         System.out.println("Hello everyone!");
@@ -200,14 +202,18 @@ public class Main {
         while (participantIterator.hasNext()) {
             System.out.println(participantIterator.next());
         }
-
         DoublyLinkedList.Participant participant4 = new DoublyLinkedList.Participant("nhan@gmail.com", "Ly Thi Thanh Nhan");
+        int index = 4;
         participantList.insertAfter(participantList.contains(participant1), participant4);
         System.out.println();
         System.out.println("List after adding the participant:");
         participantIterator = participantList.iterator();
         while (participantIterator.hasNext()) {
             System.out.println(participantIterator.next());
-        }
+        }/**
+        DoublyLinkedList.Participant participant = participantList.getParticipant(index);
+        System.out.println("The information of participant 4 is: ");
+        System.out.println(participant.getDisplayName() + " " + participant.getEmail());*/
+
     }
 }
