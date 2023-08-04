@@ -1,20 +1,21 @@
 /**import implementations.Stack;*/
-import implementations.DoublyLinkedList;
-import implementations.Queue;
-import implementations.SinglyLinkedList;
+import implementations.*;
 import implementations.ArrayList.Student;
-import implementations.ArrayList;
 
 /*import java.util.ArrayList;*/
 import java.util.Iterator;
 import java.util.Stack;
+import java.util.Arrays;
+import java.util.Scanner;
+
+import static implementations.SearchingAlgorithm.binarySearchRecursive;
+import static implementations.SearchingAlgorithm.linearSearch;
+
 /**import java.util.Queue;*/
 
 public class Main {
     public static void main(String[] args) {
-
-        testArrayList();
-        testDoublyLinkedList();
+        testBinarySearch();
     }
     public static void welcome() {
         System.out.println("Hello everyone!");
@@ -216,4 +217,19 @@ public class Main {
         System.out.println(participant.getDisplayName() + " " + participant.getEmail());*/
 
     }
+    public static void testBinarySearch() {
+        SearchingAlgorithm ob = new SearchingAlgorithm();
+        int [] myArr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        Scanner sc = new Scanner(System.in);
+        int value = sc.nextInt();
+        int find = linearSearch(myArr,value);
+        if (find==-1) System.out.println("item not found");
+        else System.out.println("The position of "+value + " is:"+ find);
+        Arrays.sort(myArr);
+        System.out.println(Arrays.toString(myArr));
+        find = binarySearchRecursive(myArr,value,0,myArr.length-1);
+        if (find==-1) System.out.println("item not found");
+        else System.out.println("The position of "+value + " is:"+ find);
+    }
+
 }
