@@ -5,15 +5,18 @@ import interfaces.AbstractQueue;
 import java.util.Iterator;
 
 public class Queue<E> implements AbstractQueue<E> {
-    private Node<E> head;
-    private Node<E> tail;
-    private int size;
-
+    Node<E> head;
+    Node<E> tail;
+    int size;
     private static class Node<E> {
-        private E element;
-        private Node<E> next;
-        public Node(E value) {
-            this.element = value;
+        E element;
+        Node<E> next;
+        public Node(E element, Node<E> next) {
+            this.element = element;
+            this.next = next;
+        }
+        public Node(E element){
+            this(element, null);
         }
     }
         /**public SimpleQueue() {
@@ -44,7 +47,36 @@ public class Queue<E> implements AbstractQueue<E> {
             this.size--;
             return element;
         }
+        @Override
+        public void enqueue(E element) {
+            Node<E> newNode = new Node<> (element);
+            if (this.head == null)
+                this.head = newNode;
+            else {
+                Node<E> current = this.head;
+                while (current.next != null){
+                    current = current.next;
+                }
+                current.next = newNode;
+            }
+            this.size++;
+        }
+        @Override
+        public boolean isEmpty() {
+        return head == null;
+    }
 
+        private void ensureNonEmpty(){
+            if (isEmpty()) throw  new IllegalStateException("Cannot poll because queue is empty");
+        }
+        @Override
+        public E dequeue(){
+            ensureNonEmpty();
+            E element = this.head.element;
+            this.head = this.head.next;
+            size--;
+            return element;
+        }
         @Override
         public E peek() {
             if (this.head == null) {
@@ -58,10 +90,6 @@ public class Queue<E> implements AbstractQueue<E> {
             return this.size;
         }
 
-        @Override
-        public boolean isEmpty() {
-            return this.size == 0;
-        }
 
         @Override
         public Iterator<E> iterator() {
