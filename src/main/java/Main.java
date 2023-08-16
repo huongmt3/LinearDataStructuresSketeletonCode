@@ -1,21 +1,23 @@
 /**import implementations.Stack;*/
 import implementations.*;
+/*import implementations.ArrayList;*/
 import implementations.ArrayList.Student;
-
-/*import java.util.ArrayList;*/
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Queue;
 import java.util.Stack;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.stream.Collectors;
 
-import static implementations.SearchingAlgorithm.binarySearchRecursive;
-import static implementations.SearchingAlgorithm.linearSearch;
-
-/**import java.util.Queue;*/
+/**import static implementations.SearchingAlgorithm.binarySearchRecursive;
+import static implementations.SearchingAlgorithm.linearSearch;*/
 
 public class Main {
-    public static void main(String[] args) {
-        testBinarySearch();
+    public static void main(String[] args) throws IOException {
+        setCoverProblem();
+        /*sumOfCoins();*/
     }
     public static void welcome() {
         System.out.println("Hello everyone!");
@@ -32,40 +34,40 @@ public class Main {
      * ============================
      */
 
-    public static void testArrayList() {
+    /**public static void testArrayList() {
         ArrayList<Student> studentList = new ArrayList<>();
         studentList.add( new Student(1, "Thu Huong", 20, 8.5));
         studentList.add( new Student(2, "Hong Tra", 20, 9.7));
         studentList.add( new Student(3, "Thu Hoai", 22, 8.3));
         studentList.add( new Student(4, "Thanh Nhan", 18, 8.2));
-        /*Print out list*/
+        /*Print out list
         System.out.println("Initial List: ");
         System.out.println(studentList);
-        /**Get capacity*/
+        /**Get capacity
          System.out.println("Capacity " + studentList.getCapacity());
 
-        /*Add new student*/
+        /*Add new student
         studentList.add(2, new Student(5, "Kim Ngan", 20, 7.9));
-        /*Print out new student list*/
+        /*Print out new student list
         System.out.println();
         System.out.println("Student list after adding: ");
         System.out.println(studentList);
-        /**Get capacity*/
+        /**Get capacity
          System.out.println("Capacity " + studentList.getCapacity());
 
-        /*Remove student*/
+        /*Remove student
         studentList.remove(3);
-        /*Print out new student list*/
+        /*Print out new student list
         System.out.println();
         System.out.println("Student list after removing: ");
         System.out.println(studentList);
-        /**Get capacity*/
+        /**Get capacity
         System.out.println("Capacity " + studentList.getCapacity());
 
-        /*Get student with index of 0*/
+        /*Get student with index of 0
         System.out.println();
         System.out.println("Student with index of 0: ");
-        System.out.println(studentList.get(0));}
+        System.out.println(studentList.get(0));}*/
     /**
      * ========================
      * |     Test Stack       |
@@ -103,25 +105,25 @@ public class Main {
      * |     Test Queue       |
      * ========================
      */
-    public static void testQueue() {
+    /**public static void testQueue() {
         Queue<String> queue = new Queue<>();
-        /*Add elements to the queue*/
+        /*Add elements to the queue
         queue.offer("Hello");
         queue.offer("World");
         queue.offer("!");
-        /*Print out the queue*/
+        /*Print out the queue
         for (String element : queue) {
             System.out.println("Original Queue: " + element);
         }
-        /*Print out size of the queue*/
+        /*Print out size of the queue
         System.out.println("This queue has " + queue.size() + " elements"); // 3
-        /*Peek at the queue's front element*/
+        /*Peek at the queue's front element
         System.out.println("The first element in this queue is " + queue.peek()); // Hello
-        /* Poll the queue's front element*/
+        /* Poll the queue's front element
         System.out.println("This element will be polled " + queue.poll()); // Hello
-        /*Re-check the queue's size*/
+        /*Re-check the queue's size
         System.out.println("After poll, this queue has " + queue.size() + " elements left"); // 2
-        /*Iterate through the queue and print out*/
+        /*Iterate through the queue and print out
         for (String element : queue) {
             System.out.println("New Queue: " + element);
         }
@@ -129,7 +131,7 @@ public class Main {
         for (String element : queue) {
             System.out.println("New Queue After Offer 'Hello': " + element);
         }
-    }
+    }*/
 
     /**
      * ===================================
@@ -217,19 +219,136 @@ public class Main {
         System.out.println(participant.getDisplayName() + " " + participant.getEmail());*/
 
     }
+    /**
+     * ================================
+     * |     Test Binary Search       |
+     * ================================
+     */
     public static void testBinarySearch() {
-        SearchingAlgorithm ob = new SearchingAlgorithm();
-        int [] myArr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        Scanner sc = new Scanner(System.in);
-        int value = sc.nextInt();
-        int find = linearSearch(myArr,value);
-        if (find==-1) System.out.println("item not found");
-        else System.out.println("The position of "+value + " is:"+ find);
-        Arrays.sort(myArr);
-        System.out.println(Arrays.toString(myArr));
-        find = binarySearchRecursive(myArr,value,0,myArr.length-1);
-        if (find==-1) System.out.println("item not found");
-        else System.out.println("The position of "+value + " is:"+ find);
+            SearchingAlgorithm ob = new SearchingAlgorithm();
+
+            int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int n = arr.length;
+            int key = 5;
+
+        int first = SearchingAlgorithm.firstElementFound(arr, key);
+        System.out.println("The index of last element in the array is " + first);
+        int last = SearchingAlgorithm.lastElementFound(arr, key);
+        System.out.println("The index of the last element in the array is " + n);
+
+        int result = ob.binarySearch(arr, 0, n - 1, key);
+        if (result == -1)
+                System.out.println("Element not found");
+            else
+                System.out.println("Element found at index "
+                        + result);
+
+        }
+    /**
+     * ===============================
+     * |     Set Cover Problem       |
+     * ===============================
+     */
+    public static void setCoverProblem() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String[] elements = reader.readLine().substring(10).split(", ");
+        int[] universe = new int[elements.length];
+        for (int i = 0; i < elements.length; i++) {
+            universe[i] = Integer.parseInt(elements[i]);
+        }
+        int numberOfSets = Integer.parseInt(reader.readLine().substring(16));
+        List<int[]> sets = new java.util.ArrayList<>();
+        for (int i = 0; i < numberOfSets; i++) {
+            String[] setElements = reader.readLine().split(", ");
+            int[] set = new int[setElements.length];
+            for (int j = 0; j < setElements.length; j++) {
+                set[j] = Integer.parseInt(setElements[j]);
+            }
+            sets.add(set);
+        }
+        List<int[]> chosenSets = chooseSets(sets, universe);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Sets to take (%d):%n", chosenSets.size()));
+        for (int[] set : chosenSets) {
+            sb.append("{");
+            sb.append(Arrays.toString(set).replaceAll("\\[|]", ""));
+            sb.append("}").append(System.lineSeparator());
+        }
+        System.out.println(sb);
     }
 
+    public static List<int[]> chooseSets(List<int[]> sets, int[] universe) {
+        List<int[]> selectedSets = new ArrayList<>();
+        Set<Integer> universeSet = new HashSet<>();
+        for (int element : universe) { universeSet.add(element);}
+        while (!universeSet.isEmpty()) {
+            int notChosenCount = 0;
+            int[] chosenSet = sets.get(0);
+            for (int[] set : sets) {
+                int count = 0;
+                for (int elem : set) {
+                    if (universeSet.contains(elem)) {
+                        count++;
+                    }
+                }
+                if (notChosenCount < count) {
+                    notChosenCount = count;
+                    chosenSet = set;
+                }
+            }
+            selectedSets.add(chosenSet);
+            for (int elem : chosenSet) {
+                universeSet.remove(elem);
+            }
+        }
+        return selectedSets;
+    }
+    /**
+     * ==========================
+     * |     Sum Of Coins       |
+     * ==========================
+     */
+    public static void sumOfCoins() {
+        Scanner in = new Scanner(System.in);
+
+        String[] elements = in.nextLine().substring(7).split(", ");
+        int[] coins = new int[elements.length];
+        for (int i = 0; i < coins.length; i++) {
+            coins[i] = Integer.parseInt(elements[i]);
+        }
+
+        int targetSum = Integer.parseInt(in.nextLine().substring(5));
+
+
+        Map<Integer, Integer> usedCoins = chooseCoins(coins, targetSum);
+
+        System.out.println(String.format("Number of coins to take: %d",
+                usedCoins.values().stream().mapToInt(Integer::intValue).sum()));
+        for (Map.Entry<Integer, Integer> usedCoin : usedCoins.entrySet()) {
+            System.out.println("  - " + usedCoin.getValue() + " coin(s) with the value " + usedCoin.getKey());
+        }
+    }
+
+    public static Map<Integer, Integer> chooseCoins(int[] coins, int targetSum) {
+        List<Integer> sortedCoins = Arrays.stream(coins).boxed()
+                .sorted(Collections.reverseOrder())
+                .collect(Collectors.toList());
+        Map<Integer, Integer> chosenCoins = new LinkedHashMap<>();
+        int currentSum = 0; int coinIndex = 0;
+        while (currentSum != targetSum && coinIndex < sortedCoins.size()) {
+            int currentCoin = sortedCoins.get(coinIndex);
+            int remainder = targetSum - currentSum;
+            int numberOfCoins = remainder / currentCoin;
+            if (currentSum + currentCoin <= targetSum) {
+                chosenCoins.put(currentCoin, numberOfCoins);
+                currentSum += numberOfCoins * currentCoin;
+            }
+            coinIndex++;
+        }
+
+        if (currentSum != targetSum)
+            throw new IllegalArgumentException();
+        return chosenCoins;
+    }
 }

@@ -6,7 +6,6 @@ import java.util.Iterator;
 
 public class Stack<E> implements AbstractStack<E> {
     private Node<E> top;
-
     private int size;
     private static class Node<E> {
         private Node<E> previous;
@@ -21,7 +20,7 @@ public class Stack<E> implements AbstractStack<E> {
         this.top = null;
         this.size = 0;
     }
-/**Push element onto the stack*/
+    /**Push element onto the stack*/
     @Override
     public void push(E element) {
         Node<E> newNode = new Node<> (element);
@@ -46,7 +45,7 @@ public class Stack<E> implements AbstractStack<E> {
         this.size--;
         return element;
     }
-/**Returns the element at the top of the stack without removing it*/
+    /**Returns the element at the top of the stack without removing it*/
     @Override
     public E peek() {
         ensureNonEmpty();
@@ -80,5 +79,12 @@ public class Stack<E> implements AbstractStack<E> {
                 return element;
             }
         };
+    }
+    static int linearSearch(int[]arr, int x)
+    {
+        int n = arr.length;
+        for (int i = 0; i < n; i++)
+            if (arr[i] == x) return i;
+        return -1;
     }
 }
