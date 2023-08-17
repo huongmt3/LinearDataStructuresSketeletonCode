@@ -7,9 +7,13 @@ public class Message {
     Queue<Character> messQueue = new Queue<>();
     public StringBuilder destMess = new StringBuilder();
 
+    /**===================================================
+     * |transfer c from source message --> message queue |
+     * ===================================================*/
     public int transfer(String sourceMess) {
         int i = 0, count = 0;
         try {
+            /* Transfer the characters from the source message to the messBuffer array.*/
             while (i < sourceMess.length()) {
                 for (int j = 0; j < messBuffer.length; j++) {
                     if (i < sourceMess.length()) {
@@ -18,6 +22,7 @@ public class Message {
                         i++;
                     } else break;
                 }
+                /*Transfer the characters from the messBuffer array to the messQueue queue.*/
                 for (int j = 0; j < messBuffer.length; j++) {
                     if (messBuffer[j] != '\0') {
                         messQueue.enqueue(messBuffer[j]);
@@ -26,6 +31,7 @@ public class Message {
                 }
                 count++;
             }
+            /*Transfer the characters from the messQueue queue to the destMess StringBuilder object.*/
             while (!messQueue.isEmpty()) {
                 char queuedChar = messQueue.dequeue();
                 destMess.append(queuedChar);
@@ -42,19 +48,20 @@ public class Message {
      * | Transferring queue of messages |
      * ==================================
      */
-    public static Queue<Message> transferMess(String[] messData) {
-        Queue<Message> transferredMess = new Queue<>();
-        int totalBuffers = 0;
-        for (String md : messData) {
-            Message message = new Message();
-            int buffers = message.transfer(md);
-            System.out.println("Number of buffers used: \u001B[36m" + buffers + "\u001B[0m.");
-            transferredMess.enqueue(message);
-            totalBuffers += buffers;
+        public static Queue<Message> transferMess(String[] messData) {
+            Queue<Message> transferredMess = new Queue<>();
+            int totalBuffers = 0;
+            for (String md : messData) {
+                Message message = new Message();
+                int buffers = message.transfer(md);
+                System.out.println("Number of buffers used: \u001B[36m" + buffers + "\u001B[0m.");
+                transferredMess.enqueue(message);
+                totalBuffers += buffers;
+            }
+            System.out.println("Total number of buffers used to transfer \u001B[36m" + messData.length
+                    + "\u001B[0m messages: \u001B[36m" + totalBuffers + "\u001B[0m.\n");
+            return transferredMess;
         }
-        System.out.println("Total number of buffers used to transfer \u001B[36m" + messData.length + "\u001B[0m messages: \u001B[36m" + totalBuffers + "\u001B[0m.\n");
-        return transferredMess;
-    }
 
     /**
      * ================================

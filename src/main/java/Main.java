@@ -1,23 +1,33 @@
-/**import implementations.Stack;*/
 import implementations.*;
 import implementations.Queue;
 import implementations.Stack;
 import implementations.Message;
+import org.junit.jupiter.api.Test;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import static implementations.Message.inputMess;
 import static implementations.Message.transferMess;
 import static implementations.Message.processMess;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class Main {
     public static void main(String[] args) {
+        buffersTest();
+    }
+    public static void appTest(){
         System.out.println("Enter set of messages: ");
         System.out.println("Each message can be only up to 250 characters and will be separated by a newline character.");
         System.out.println("Type 'end' if you want to end the import of messages.");
         try {
             StringBuilder messCollection = new StringBuilder();
             String inputtedMess = inputMess();
-            while (!inputtedMess.equalsIgnoreCase("end")){
+            while (!inputtedMess.equalsIgnoreCase("end")) {
+                System.out.println("Message length: \u001B[32m" + inputtedMess.length() + "\u001B[0m characters.");
+                messCollection.append(inputtedMess).append("\n");
+                inputtedMess = inputMess();
             }
             System.out.println();
             long start = System.currentTimeMillis();
@@ -29,7 +39,7 @@ public class Main {
                 System.out.println("\u001B[35m" + mess.destMess + "\u001B[0m");
             long end = System.currentTimeMillis();
             long time = end - start;
-            System.out.println("Total execution time: \u001B[35m" + time + "\u991B[0m ms.");
+            System.out.println("Total execution time: \u001B[35m" + time + "\u001B[0m ms.");
         }
         catch (IllegalArgumentException error){
             System.out.println("\u001B[31mMessage is empty.\nProcess terminated.\u001B[0m");
@@ -37,5 +47,36 @@ public class Main {
         catch (IllegalStateException error){
             System.out.println("\u001B[31mMessage exceeds the limit of 250 characters.\nProcess terminated.\u001B[0m");
         }
+        catch (OutOfMemoryError error){
+            System.out.println("\u001B[31mThe StringBuilder object is too large.\nProcess terminated.\u001B[0m");
+        }
     }
+    @Test
+    public void testTransfer(){
+        String sourceMess = "Test the integrity of the message content after being transferred using JUnit";
+        Message message = new Message();
+        message.transfer(sourceMess);
+        assertEquals(sourceMess, message.destMess.toString());
+    }
+    public static void buffersTest(){
+        File file = new File("./test.txt");
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("The file messages.txt could not be found.");
+            System.exit(1);
+        }
+        String[] messages = new String[1232];
+        int i = 0;
+        while (scanner.hasNextLine()) {
+            messages[i] = scanner.nextLine();
+            i++;
+        }
+        appTest();
+    }
+    /**private static void processMessages(String[] messages) {
+    for (String message : messages) {
+    System.out.println(message);
+    }*/
 }
