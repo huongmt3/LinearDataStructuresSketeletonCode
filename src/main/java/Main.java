@@ -15,9 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Main {
     public static void main(String[] args) {
-        buffersTest();
+        appTest();
     }
-    public static void appTest(){
+
+    public static void appTest() {
         System.out.println("Enter set of messages: ");
         System.out.println("Each message can be only up to 250 characters and will be separated by a newline character.");
         System.out.println("Type 'end' if you want to end the import of messages.");
@@ -40,31 +41,30 @@ public class Main {
             long end = System.currentTimeMillis();
             long time = end - start;
             System.out.println("Total execution time: \u001B[35m" + time + "\u001B[0m ms.");
-        }
-        catch (IllegalArgumentException error){
+        } catch (IllegalArgumentException error) {
             System.out.println("\u001B[31mMessage is empty.\nProcess terminated.\u001B[0m");
-        }
-        catch (IllegalStateException error){
+        } catch (IllegalStateException error) {
             System.out.println("\u001B[31mMessage exceeds the limit of 250 characters.\nProcess terminated.\u001B[0m");
-        }
-        catch (OutOfMemoryError error){
+        } catch (OutOfMemoryError error) {
             System.out.println("\u001B[31mThe StringBuilder object is too large.\nProcess terminated.\u001B[0m");
         }
     }
+
     @Test
-    public void testTransfer(){
+    public void testTransfer() {
         String sourceMess = "Test the integrity of the message content after being transferred using JUnit";
         Message message = new Message();
         message.transfer(sourceMess);
         assertEquals(sourceMess, message.destMess.toString());
     }
-    public static void buffersTest(){
-        File file = new File("./test.txt");
+
+    /**public static void buffersTest() {
+        File file = new File("C:\\Users\\ADMIN\\Desktop\\1649\\1649\\Linear Data Structures Sketeleton Code\\src\\main\\java\\implementations\\test.txt");
         Scanner scanner = null;
         try {
             scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println("The file messages.txt could not be found.");
+            System.out.println("The file test.txt could not be found.");
             System.exit(1);
         }
         String[] messages = new String[1232];
@@ -74,9 +74,12 @@ public class Main {
             i++;
         }
         appTest();
+        processMessages(messages);
     }
-    /**private static void processMessages(String[] messages) {
-    for (String message : messages) {
-    System.out.println(message);
+
+    private static void processMessages(String[] messages) {
+        for (String message : messages) {
+            System.out.println(message);
+        }
     }*/
 }

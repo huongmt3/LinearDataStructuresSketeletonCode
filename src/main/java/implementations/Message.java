@@ -3,7 +3,7 @@ package implementations;
 import java.util.Scanner;
 
 public class Message {
-    char[] messBuffer = new char[10];
+    char[] messBuffer = new char[50];
     Queue<Character> messQueue = new Queue<>();
     public StringBuilder destMess = new StringBuilder();
 
@@ -94,33 +94,4 @@ public class Message {
         }
         return sourceMess;
     }
-    /**
-     * ==========================================
-     * | Exceptions handled in inputting message |
-     * ==========================================
-     */
-/**try {
-        StringBuilder messCollection = new StringBuilder();
-        String inputtedMess = inputMess();
-        while (!inputtedMess.equalsIgnoreCase("end")){
-        }
-        System.out.println();
-        long start = System.currentTimeMillis();
-        String[] messData = messCollection.toString().split("\n");
-        Queue<Message> transferredMess = transferMess(messData);
-        Stack<Message> processedMess = processMess(transferredMess);
-        System.out.println("Message in stack to be processed: ");
-        for (Message mess : processedMess)
-            System.out.println("\u001B[35m" + mess.destMess + "\u001B[0m");
-        long end = System.currentTimeMillis();
-        long time = end - start;
-        System.out.println("Total execution time: \u001B[35m" + time + "\u991B[0m ms.");
-    }
-        catch (IllegalArgumentException error){
-        System.out.println("\u001B[31mMessage is empty.\nProcess terminated.\u001B[0m");
-    }
-        catch (IllegalStateException error){
-        System.out.println("\u001B[31mMessage exceeds the limit of 250 characters.\nProcess terminated.\u001B[0m");
-    }*/
-
 }
