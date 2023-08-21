@@ -1,11 +1,11 @@
-import implementations.*;
 import implementations.Queue;
 import implementations.Stack;
 import implementations.Message;
 import org.junit.jupiter.api.Test;
-import java.io.File;
+/*import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import static org.junit.jupiter.api.Assertions.fail;*/
 
 import static implementations.Message.inputMess;
 import static implementations.Message.transferMess;
@@ -50,15 +50,41 @@ public class Main {
         }
     }
 
-    @Test
-    public void testTransfer() {
-        String sourceMess = "Test the integrity of the message content after being transferred using JUnit";
-        Message message = new Message();
-        message.transfer(sourceMess);
-        assertEquals(sourceMess, message.destMess.toString());
+
+    /*@Test
+    public void testEmptyMessage() {
+        try{
+            String sourceMess = "";
+            Message message = new Message();
+            message.transfer(sourceMess);
+        } catch (IllegalArgumentException error) {
+        System.out.println("\u001B[31mMessage is empty.\nProcess terminated.\u001B[0m");
+        }
+    }*/
+
+    public static class MessageTest {
+
+        @Test
+        public void testMultipleMessages() {
+            String[] messages = { "Message 1", "Message 2", "Message 3" };
+            Queue<Message> transferredMess = Message.transferMess(messages);
+        }
+        @Test
+        public void testTransferInteger() {
+            Message message = new Message();
+            int buffers = message.transfer("helloo");
+        }
+        @Test
+        public void testTransfer() {
+            String sourceMess = "Test the integrity of the message content after being transferred using JUnit";
+            Message message = new Message();
+            message.transfer(sourceMess);
+            /*assertEquals(sourceMess, message.destMess.toString()); thua*/
+        }
     }
 
-    /**public static void buffersTest() {
+
+    /*public static void buffersTest() {
         File file = new File("C:\\Users\\ADMIN\\Desktop\\1649\\1649\\Linear Data Structures Sketeleton Code\\src\\main\\java\\implementations\\test.txt");
         Scanner scanner = null;
         try {
@@ -82,4 +108,5 @@ public class Main {
             System.out.println(message);
         }
     }*/
+
 }

@@ -3,7 +3,7 @@ package implementations;
 import java.util.Scanner;
 
 public class Message {
-    char[] messBuffer = new char[50];
+    char[] messBuffer = new char[10];
     Queue<Character> messQueue = new Queue<>();
     public StringBuilder destMess = new StringBuilder();
 
@@ -86,11 +86,11 @@ public class Message {
         String sourceMess = scanner.nextLine();
         if (sourceMess.length() == 0){
             System.out.println("Message length: \u001B[32m" + 0 + "\u001B[0m characters.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("\u001B[31mMessage is empty.\nProcess terminated.\u001B[0m");
         }
         else if (sourceMess.length() > 250){
             System.out.println("Message length: \u001B[32m" + sourceMess.length() + "\u001B[0m characters.");
-            throw new IllegalStateException();
+            throw new IllegalStateException("\u001B[31mMessage exceeds the limit of 250 characters.\nProcess terminated.\u001B[0m");
         }
         return sourceMess;
     }
